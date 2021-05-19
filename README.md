@@ -2,9 +2,7 @@
 L2T2 Project
 
 Running:
-
 ~ cd mysite
-
 ~ py manage.py runserver
 
 Demo video: 
