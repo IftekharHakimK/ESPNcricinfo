@@ -1,9 +1,9 @@
 # ESPNcricinfo
 L2T2 Project
 
-###Running:
-> cd mysite
+### Running:
+> cd mysite 
 > py manage.py runserver
 
-###Demo video: 
+### Demo video: 
 https://youtu.be/FCcRqSm7u5w
