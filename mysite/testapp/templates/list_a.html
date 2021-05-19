@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Players</title>
+</head>
+<body>
+<h1>Players</h1>
+<table width="100%"  border="1">
+    <tr style="background-color:lightgray">
+        <th>First_name</th>
+        <th>Role</th>
+        <th>Nationality</th>
+    </tr>
+    {% for player in players %}
+       <tr>
+           <td>{{player.First_name}}</td>
+           <td>{{player.Role }}</td>
+           <td>{{player.Nationality}}</td>
+       </tr>
+    {% endfor %}
+
+</table>
+<a href="/index">index</a>
+</body>
+</html>

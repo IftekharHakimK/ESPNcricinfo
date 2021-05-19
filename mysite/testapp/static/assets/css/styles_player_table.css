@@ -1,0 +1,47 @@
+#top-head {
+  height: 4vw;
+  text-align: center;
+  background-color: rgb(44,128,255);
+  font-family: cursive;
+  color: white;
+  font-style: italic;
+  font-size: 60px;
+}
+
+.part {
+  background-color: rgb(239,239,239);
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+hr {
+  color: rgb(0,0,0);
+  border-width: 2px;
+}
+
+#name-div {
+  padding-top: 10px;
+  margin-left: 15px;
+}
+
+.h5, h5 {
+  font-weight: 400;
+  font-family: cursive;
+  margin-left: 50px;
+  font-style: normal;
+}
+
+#Name {
+  font-family: cursive;
+}
+
+#main-div {
+  padding-bottom: 10px;
+  padding-right: 20px;
+}
+
+#full-body {
+  background-color: rgb(239,233,177);
+}

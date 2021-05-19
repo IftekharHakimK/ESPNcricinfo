@@ -1,0 +1,17 @@
+#heading-1 {
+  background-color: rgb(63,140,255);
+  border-radius: 6px;
+  color: white;
+}
+#row1 {
+  margin-top: 10px;
+  background-color: rgb(239,239,239);
+  border-radius: 6px;
+}
+.h6, h6 {
+  margin-top: 5px;
+  font-size: 12px;
+}
+#tophead {
+  margin-top: 20px;
+}

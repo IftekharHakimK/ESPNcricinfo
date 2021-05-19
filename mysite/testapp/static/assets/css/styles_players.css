@@ -1,0 +1,28 @@
+#top-head {
+  height: 5vw;
+  text-align: center;
+  background-color: rgb(44,128,255);
+  font-family: cursive;
+  color: white;
+  font-style: italic;
+  font-size: 60px;
+}
+
+#table1 {
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: rgb(239,233,177);
+  width: 97vw;
+  border-collapse: separate;
+  border-spacing: 0 0.5em;
+}
+
+#div-temp1 {
+  background-color: rgb(239,233,177);
+}
+
+#table1 tr {
+  background-color: white;
+}
+

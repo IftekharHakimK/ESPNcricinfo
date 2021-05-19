@@ -1,0 +1,26 @@
+#main_div {
+  height: 100vh;
+  margin-left: 20px;
+  justify-content: center;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.hux {
+  margin-top: 10px;
+  width: 400px;
+  height: 2vw;
+  margin-left: 35vw;
+  text-align: center;
+  background-color: rgb(44,128,255);
+  border-radius: 10px;
+  font-size: 1.3vw;
+  color: white;
+}
+#nameee {
+  text-align: center;
+  margin-top: 5px;
+}
+#tophead {
+  margin-top: 20px;
+}

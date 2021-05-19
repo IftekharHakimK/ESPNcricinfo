@@ -1,0 +1,44 @@
+#heading-1 {
+  background-color: rgb(63,140,255);
+  border-radius: 6px;
+  color: white;
+}
+
+#tophead {
+  margin-top: 20px;
+}
+
+#row1 {
+  margin-top: 10px;
+  background-color: rgb(239,239,239);
+  border-radius: 6px;
+}
+
+#select1 {
+  height: 30px;
+  font-style: initial;
+  font-size: 12px;
+}
+
+.h6, h6 {
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+#i12, #i22 {
+  margin-top: 30px;
+}
+
+#washed_out {
+  margin-top: 20px;
+  margin-left: 30vw;
+}
+
+#motm {
+  margin-top: 20px;
+  margin-left: 30vw;
+}
+#update{
+  width: 200px;
+  margin-left: 30vw;
+}

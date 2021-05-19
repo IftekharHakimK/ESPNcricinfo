@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Add Match</title>
+    <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/css/styles_add_match.css">
+</head>
+
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert- {{message.tags}} m-2 id" id="msg" role="alert">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div id="top" >
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="/static/assets/css/Navigation-Clean.css">
+        <link rel="stylesheet" href="/static/assets/css/styles_TOP_1.css">
+        <h1 id="H" style="color: rgb(255,255,255);font-style: italic;font-family: cursive;font-size: 58px;margin-left: 32vw;">Admin:ESPNcricinfo&nbsp;<img class="tada animated" id="IMG" src="/static/assets/css/logo.png"></h1>
+        <nav class="navbar navbar-light navbar-expand-sm" id="nav" style="padding: 13px;">
+            <div class="container-fluid">
+                <a href="{% url 'admin_update_home' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Admin Home</h5>
+                </a>
+                <a href="{% url 'home' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Home</h5>
+                </a>
+                <a href="{% url 'recent_matches' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Matches</h5>
+                </a>
+                <a href="{% url 'show_series' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Series</h5>
+                </a>
+                <a href="/players">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Players</h5>
+                </a>
+                <a href="{% url 'manager' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Managers</h5>
+                </a>
+                <a href="{% url 'user_view_teams' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Teams</h5>
+                </a>
+                <a href="{% url 'news_list' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">News</h5>
+                </a>
+                <a href="{% url 'logout' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Logout</h5>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="login-clean">
+        <form method="post" action="{% url 'add_match' tournament_id=tournament_id tournament_name=tournament_name %}">
+            {% csrf_token %}
+            <h2 class="sr-only">Login Form</h2>
+            <div class="illustration">
+                <h1 style="color: rgb(70,66,252);font-size: 33px;">Add New Match</h1>
+                <div></div>
+                <div id="first-team-div">
+                    <div class="form-row">
+                        <div class="col-md-3" id="col-1">
+                            <h1 id="ft" style="height: 27px;color: rgb(0,0,0);">Team 1:</h1>
+                        </div>
+                        <div class="col">
+                            <select class="form-control" name="first_team">
+                            {% for team in teams %}
+                                <option value={{team.team_id}}>{{team.team_name}}<i class="lowercase">@{{team.team_id}}</i> </option>
+                            {% endfor %}
+                        
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div id="second-team-div">
+                    <div class="form-row">
+                        <div class="col-md-3" id="col-1">
+                            <h1 id="ft" style="height: 27px;color: rgb(0,0,0);">Team 2:</h1>
+                        </div>
+                        <div class="col">
+                            <select class="form-control" name="second_team" placeholder="second-team">
+                                <optgroup label="Second team">
+                                    {% for team in teams %}
+                                        <option value={{team.team_id}}>{{team.team_name}}<i class="lowercase">@{{team.team_id}}</i> </option>
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="form-row">
+                        <div class="col-md-3" id="col-1">
+                            <h1 id="ft" style="height: 27px;color: rgb(0,0,0);">Stage:</h1>
+                        </div>
+                        <div class="col">
+                            <select class="form-control" name="stage">
+                                <option value='Group'>Group stage</option>
+                                <option value='R16'>Round Of 16</option>
+                                <option value='QF'>Quarter Final</option>
+                                <option value='SF'>Semi Final</option>
+                                <option value='F'>Final</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="form-row">
+                        <div class="col-md-3" id="col-1">
+                            <h1 id="ft" style="height: 27px;color: rgb(0,0,0);">Toss Won:</h1>
+                        </div>
+                        <div class="col">
+                            <select class="form-control" name="toss_won">
+                                <option value="team_1">Team 1</option>
+                                <option value="team_2">Team 2</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <select class="form-control" name="choice">
+                                <option value="batting">Batting</option>
+                                <option value="fielding">Fielding</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="form-row">
+                        <div class="col-md-3" id="col-1">
+                            <h1 id="ft" style="height: 27px;color: rgb(0,0,0);font-size: 15pt">Award:</h1>
+                        </div>
+                        <div class="col"><input class="form-control" type="number" name="award_money" required="True"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="form-row">
+                        <div class="col-md-3" id="col-1">
+                            <h1 id="ft" style="height: 27px;color: rgb(0,0,0);font-size: 15pt">Date:</h1>
+                        </div>
+                        <div class="col"><input class="form-control" type="date" name="match_date" required="True"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="form-row">
+                        <div class="col-md-3" id="col-1">
+                            <h1 id="ft" style="height: 27px;color: rgb(0,0,0);">Venue:</h1>
+                        </div>
+                        <div class="col">
+                            <select class="form-control" name="stadium_id">
+                                {% for stadium in stadiums %}
+                                    <option value={{stadium.stadium_id}}>{{stadium.stadium_name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">ADD</button></div>
+        </form>
+    </div>
+    <script src="/static/assets/js/jquery.min.js"></script>
+    <script src="/static/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script >
+        setTimeout(function(){
+            if($('#msg').length>0)
+                $('#msg').remove();
+        },2000)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Manager Details</title>
+    <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/css/styles_player-detail.css">
+    <link rel="stylesheet" href="/static/assets/css/styles_show_matches.css">
+</head>
+
+<body id="full-body">
+    <div id="top" style="margin-bottom: 70px;">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="/static/assets/css/Navigation-Clean.css">
+        <link rel="stylesheet" href="/static/assets/css/styles_TOP.css">
+        <h1 id="H" style="color: rgb(255,255,255);font-style: italic;font-family: cursive;font-size: 58px;margin-left: 40vw;">ESPNcricinfo&nbsp;<img class="tada animated" id="IMG" src="/static/assets/css/logo.png"></h1>
+        <nav class="navbar navbar-light navbar-expand-sm" id="nav" style="padding: 13px;">
+            <div class="container-fluid">
+                <a href="{% url 'home' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Home</h5>
+                </a>
+                <a href="{% url 'recent_matches' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Matches</h5>
+                </a>
+                <a href="{% url 'show_series' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Series</h5>
+                </a>
+                <a href="/players">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Players</h5>
+                </a>
+                <a href="{% url 'manager' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Managers</h5>
+                </a>
+                <a href="{% url 'user_view_teams' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Teams</h5>
+                </a>
+                <a href="{% url 'news_list' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">News</h5>
+                </a>
+                <a href="{% url 'login' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Admin Site</h5>
+                </a>
+            </div>
+        </nav>
+    </div>
+    <div class="part">
+        <div id="name-div">
+            <h3 id="Name">{{identity.full_name}}</h3>
+        </div>
+        <hr>
+        <div id="main-div" style="margin-bottom: 100px;">
+            <h5 class="identity-det">Full Name: {{info.name}}</h5>
+            <h5 class="identity-det">Date Of Birth: {{info.dob}}</h5>
+            <h5 class="identity-det">Date of birth: {{identity.dob}}</h5>
+            <h5 class="identity-det">Age: {{info.year}} Years and {{info.days}} days</h5>
+            <h5 class="identity-det">Nationality: {{info.nationality}}</h5>
+
+            <h1 class="text-center" id="tophead" style="color: rgb(63,140,255);"><em>Career Contracts</em></h1>
+            <center>
+                <div class="form-row" id="heading-1" style="width:500px;">
+                    <div class="col-md-3" style="height: 30px;">
+                        <h6>&nbsp;&nbsp;Team</h6>
+                    </div>
+                    <div class="col-md-3" style="height: 30px;">
+                        <h6>&nbsp;&nbsp;Signing Date</h6>
+                    </div>
+                    <div class="col-md-3" style="height: 30px;">
+                        <h6>Contract Length</h6>
+                    </div>
+                    <div class="col-md-3" style="height: 30px;">
+                        <h6>Salary</h6>
+                    </div>
+                </div>
+            </center>
+
+            <center>
+                {% for job in curjob %}
+                <div class="form-row" id="row1" style="width:500px;">
+                    <div class="col-md-3" style="height: 30px;">
+                        <h6>{{job.team}}</h6>
+                    </div>
+                    <div class="col-md-3" style="height: 30px;">
+                        <h6>{{job.sign_date}}</h6>
+                    </div>
+                    <div class="col-md-3" style="height: 30px;">
+                        <h6>{{job.con_len}} Years</h6>
+                    </div>
+                    <div class="col-md-3" style="height: 30px;">
+                        <h6>${{job.salary}}</h6>
+                    </div>
+                </div>
+                {% endfor %}
+            </center>
+        </div>
+    </div>
+    
+    <script src="/static/assets/js/jquery.min.js"></script>
+    <script src="/static/assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

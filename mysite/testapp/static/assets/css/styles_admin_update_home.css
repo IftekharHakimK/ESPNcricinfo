@@ -1,0 +1,19 @@
+#main_div {
+  height: 100vh;
+  margin-left: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.hux {
+  margin-top: 10px;
+  width: 400px;
+  height: 2vw;
+  margin-left: 35vw;
+  text-align: center;
+  background-color: rgb(63,140,255);;
+  border-radius: 10px;
+  font-size: 1.3vw;
+  color: white;
+}
+

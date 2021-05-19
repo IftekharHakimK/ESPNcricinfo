@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Add Match Page 2</title>
+    <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/css/add_match_p2.css">
+</head>
+
+<body>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert- {{message.tags}} m-2 id" id="msg" role="alert">
+        {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert- {{message.tags}} m-2 id" id="msg" role="alert">
+        {{message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div id="top" >
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="/static/assets/css/Navigation-Clean.css">
+        <link rel="stylesheet" href="/static/assets/css/styles_TOP_1.css">
+        <h1 id="H" style="color: rgb(255,255,255);font-style: italic;font-family: cursive;font-size: 58px;margin-left: 22vw;">Admin:ESPNcricinfo&nbsp;<img class="tada animated" id="IMG" src="/static/assets/css/logo.png"></h1>
+        <nav class="navbar navbar-light navbar-expand-sm" id="nav" style="padding: 13px;">
+            <div class="container-fluid">
+                <a href="{% url 'admin_update_home' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Admin Home</h5>
+                </a>
+                <a href="{% url 'home' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Home</h5>
+                </a>
+                <a href="{% url 'recent_matches' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Matches</h5>
+                </a>
+                <a href="{% url 'show_series' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Series</h5>
+                </a>
+                <a href="/players">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Players</h5>
+                </a>
+                <a href="{% url 'manager' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Managers</h5>
+                </a>
+                <a href="{% url 'user_view_teams' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Teams</h5>
+                </a>
+                <a href="{% url 'news_list' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">News</h5>
+                </a>
+                <a href="{% url 'logout' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Logout</h5>
+                </a>
+            </div>
+        </nav>
+    </div>
+    <div style="margin-top: 100px;">
+        <h1 style="font-size: 30px;color: rgb(70,66,252);">Match Squad</h1>
+        <div>
+            <form method="post" action="{% url 'add_match_p2' tournament_id=tournament_id first_team=first_team second_team=second_team %}">
+                {% csrf_token %}
+                <div>
+                    <div class="form-row">
+                        <div class="col">
+                            <h1 style="font-size: 26px;">{{first_team}}</h1>
+                            
+                            
+                            <select class="form-control" name="f0">
+                                <optgroup label="Select player">
+                                    {% for player in first_team_players %}
+                                        {% ifequal x0 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+
+                            <select class="form-control" name="f1">
+                                <optgroup label="Select player">
+                                    {% for player in first_team_players %}
+                                        {% ifequal x1 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+
+                            <select class="form-control" name="f2">
+                                <optgroup label="Select player">
+                                    {% for player in first_team_players %}
+                                        {% ifequal x2 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+
+                            <select class="form-control" name="f3">
+                                <optgroup label="Select player">
+                                    {% for player in first_team_players %}
+                                        {% ifequal x3 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+
+                            <select class="form-control" name="f4">
+                                <optgroup label="Select player">
+                                    {% for player in first_team_players %}
+                                        {% ifequal x4 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+
+                            <select class="form-control" name="f5">
+                                <optgroup label="Select player">
+                                    {% for player in first_team_players %}
+                                        {% ifequal x5 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+
+                            <select class="form-control" name="f6">
+                                <optgroup label="Select player">
+                                    {% for player in first_team_players %}
+                                        {% ifequal x6 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+
+                            <select class="form-control" name="f7">
+                                <optgroup label="Select player">
+                                    {% for player in first_team_players %}
+                                        {% ifequal x7 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+                            
+                            <select class="form-control" name="f8">
+                                <optgroup label="Select player">
+                                    {% for player in first_team_players %}
+                                        {% ifequal x8 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+
+                            <select class="form-control" name="f9">
+                                <optgroup label="Select player">
+                                    {% for player in first_team_players %}
+                                        {% ifequal x9 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+
+                            <select class="form-control" name="f10">
+                                <optgroup label="Select player">
+                                    {% for player in first_team_players %}
+                                        {% ifequal x10 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+
+                        </div>
+                        <div
+                        class="col">
+                        <h1 style="font-size: 26px;">{{second_team}}</h1>
+                        
+                        <select class="form-control" name="s0">
+                            <optgroup label="Select player">
+                                {% for player in second_team_players %}
+                                        {% ifequal y0 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                {% endfor %}
+                            </optgroup>
+                        </select>
+
+                        <select class="form-control" name="s1">
+                            <optgroup label="Select player">
+                                {% for player in second_team_players %}
+                                        {% ifequal y1 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                {% endfor %}
+                            </optgroup>
+                        </select>
+
+                        <select class="form-control" name="s2">
+                            <optgroup label="Select player">
+                                {% for player in second_team_players %}
+                                        {% ifequal y2 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                {% endfor %}
+                            </optgroup>
+                        </select>
+
+                        <select class="form-control" name="s3">
+                            <optgroup label="Select player">
+                                {% for player in second_team_players %}
+                                        {% ifequal y3 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                {% endfor %}
+                            </optgroup>
+                        </select>
+
+                        <select class="form-control" name="s4">
+                            <optgroup label="Select player">
+                                {% for player in second_team_players %}
+                                        {% ifequal y4 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                {% endfor %}
+                            </optgroup>
+                        </select>
+
+                        <select class="form-control" name="s5">
+                            <optgroup label="Select player">
+                                {% for player in second_team_players %}
+                                        {% ifequal y5 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                {% endfor %}
+                            </optgroup>
+                        </select>
+
+                        <select class="form-control" name="s6">
+                            <optgroup label="Select player">
+                                {% for player in second_team_players %}
+                                        {% ifequal y6 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                {% endfor %}
+                            </optgroup>
+                        </select>
+
+                        <select class="form-control" name="s7">
+                            <optgroup label="Select player">
+                                {% for player in second_team_players %}
+                                        {% ifequal y7 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                {% endfor %}
+                            </optgroup>
+                        </select>
+
+                        <select class="form-control" name="s8">
+                            <optgroup label="Select player">
+                                {% for player in second_team_players %}
+                                        {% ifequal y8 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                {% endfor %}
+                            </optgroup>
+                        </select>
+
+                        <select class="form-control" name="s9">
+                            <optgroup label="Select player">
+                                {% for player in second_team_players %}
+                                        {% ifequal y9 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                {% endfor %}
+                            </optgroup>
+                        </select>
+                        
+                        <select class="form-control" name="s10">
+                            <optgroup label="Select player">
+                                {% for player in second_team_players %}
+                                        {% ifequal y10 player.player_name %}
+                                            <option value={{player.player_id}} selected>{{player.player_name}}</option>
+                                        {% else %}
+                                            <option value={{player.player_id}}>{{player.player_name}}</option>
+                                        {% endifequal %}                                        
+                                {% endfor %}
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Submit</button></div>
+        </form>
+    </div>
+</div>
+<script src="/static/assets/js/jquery.min.js"></script>
+<script src="/static/assets/bootstrap/js/bootstrap.min.js"></script>
+<script >
+    setTimeout(function(){
+        if($('#msg').length>0)
+            $('#msg').remove();
+    },2000)
+</script>
+</body>
+
+</html>

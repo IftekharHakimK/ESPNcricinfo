@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>View Match</title>
+	<link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/assets/css/styles_add_match_p3.css">
+</head>
+
+<style>
+	input[type=number] {
+  		-moz-appearance: textfield;
+	}
+
+</style>
+
+<body style="background-color: #fcfcfc;margin-bottom: 200px;">
+	<div id="top" style="margin-bottom: 100px;">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="/static/assets/css/Navigation-Clean.css">
+        <link rel="stylesheet" href="/static/assets/css/styles_TOP.css">
+        <h1 id="H" style="color: rgb(255,255,255);font-style: italic;font-family: cursive;font-size: 58px;margin-left: 40vw;">ESPNcricinfo&nbsp;<img class="tada animated" id="IMG" src="/static/assets/css/logo.png"></h1>
+        <nav class="navbar navbar-light navbar-expand-sm" id="nav" style="padding: 13px;">
+            <div class="container-fluid">
+                <a href="{% url 'home' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Home</h5>
+                </a>
+                <a href="{% url 'recent_matches' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Matches</h5>
+                </a>
+                <a href="{% url 'show_series' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Series</h5>
+                </a>
+                <a href="/players">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Players</h5>
+                </a>
+                <a href="{% url 'manager' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Managers</h5>
+                </a>
+                <a href="{% url 'user_view_teams' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Teams</h5>
+                </a>
+                <a href="{% url 'news_list' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">News</h5>
+                </a>
+                <a href="{% url 'login' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Admin Site</h5>
+                </a>
+            </div>
+        </nav>
+    </div>
+	<div class="container">
+		<h1 class="text-center" id="tophead" style="color: rgb(63,140,255);"><em>{{batting_first}} vs {{bowling_first}}</em></h1>
+		<br>
+		<form>
+			{% csrf_token %}
+			<div id="i11">
+				<h5><u> <b>Tournament:</b></u> {{tournament_name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u><b>Stage:</b></u> {{stage}}</h5>
+				<h5><u> <b>Venue:</b></u> {{stadium_name}}</h5>
+				<h5><u> <b>Match Date:</b></u> {{match_date}}</h5>
+				<h5><u> <b>Toss:</b></u> {{ts}} won the toss and chose {{choice}}</h5>
+				<h5><u> <b>Format:</b></u> {{format}}</h5>
+				
+				
+				<h3 style="color: rgb(63,140,255);"><em>Innings 1:</em></h3>
+				<h4><em>{{batting_first}} Batting</em></h4>
+				<div class="form-row" id="heading-1">
+					<div class="col-md-2" style="height: 30px;">
+						<h6>&nbsp; Batsman</h6>
+					</div>
+					<div class="col-md-2" style="height: 30px;">
+						<h6>Bowled by</h6>
+					</div>
+					<div class="col-md-2" style="height: 30px;">
+						<h6>Cought by</h6>
+					</div>
+					<div class="col-md-2" style="height: 30px;">
+						<h6>Runout by</h6>
+					</div>
+					<div class="col-md-1" style="height: 30px;">
+						<h6>Runs</h6>
+					</div>
+					<div class="col-md-1" style="height: 30px;">
+						<h6>Balls</h6>
+					</div>
+					<div class="col-md-1" style="height: 30px;">
+						<h6>4s</h6>
+					</div>
+					<div class="col-md-1" style="height: 30px;">
+						<h6>6s</h6>
+					</div>
+				</div>
+				{% for player in name1 %}
+				<div class="form-row" id="row1">
+					<div class="col-md-2" style="height: 30px;">
+						<h6>{{player.player_name}}</h6>
+					</div>
+					
+					<div class="col-md-2" style="height: 30px;">
+						{% if player.not_out %}
+							<h6>Not out</h6>
+						{% else %}
+							<h6>{{player.bowled_by}}</h6>
+						{% endif %}
+					</div>
+
+					<div class="col-md-2" style="height: 30px;">
+						{% if player.not_out %}
+							
+						{% else %}
+							<h6>{{player.cought_by}}</h6>
+						{% endif %}
+					</div>
+
+					<div class="col-md-2" style="height: 30px;">
+						{% if player.not_out %}
+							
+						{% else %}
+							<h6>{{player.runout_by}}</h6>
+						{% endif %}
+					</div>
+
+
+					<div class="col-md-1" style="height: 30px;"><input class="form-control" type="number" id="select1" name={{player.player_id|add:'_runs' }} value={{player.run_scored}} readonly></div>
+					<div class="col-md-1" style="height: 30px;"><input class="form-control" type="number" id="select1" name={{player.player_id|add:'_ball_faced'}} value={{player.ball_faced}} readonly></div>
+					<div class="col-md-1" style="height: 30px;"><input class="form-control" type="number" id="select1" name={{player.player_id|add:'_4s'}} value={{player.fours}} readonly></div>
+					<div class="col-md-1" style="height: 30px;"><input class="form-control" type="number" id="select1" name={{player.player_id|add:'_6s'}} value={{player.sixes}} readonly></div>
+				</div>
+				{% endfor %}
+				
+				<div class="form-row" id="row1">
+					<div class="col-md-2" style="height: 30px;">
+						<h6>&nbsp; Total -&nbsp; Extras: {{squad2_score.total_extra}}</h6>
+					</div>
+					<div class="col-md-2" style="height: 30px;">
+						<h6>Balls: {{squad1_score.total_ball}}</h6>
+					</div>
+					<div class="col-md-2" style="height: 30px;">
+						<h6>Wickets: {{squad1_score.total_wicket}}</h6>
+					</div>
+					<div class="col-md-2" style="height: 30px;">
+						
+					</div>
+					<div class="col-md-1" style="height: 30px;">
+						<h6> Runs: {{squad1_score.total_run}}</h6>
+					</div>
+					<div class="col-md-1" style="height: 30px;"></div>
+					<div class="col-md-1" style="height: 30px;">
+						<h6> Fours: {{squad1_score.total_four}}</h6>
+					</div>
+					<div class="col-md-1" style="height: 30px;">
+						<h6> Sixes: {{squad1_score.total_six}}</h6>
+					</div>
+				</div>
+			</div>
+			<div id="i12">
+				<h4><em>{{bowling_first}} Bowling</em></h4>
+				<div class="form-row" id="heading-1" style="width: 915px;">
+					<div class="col-md-2" style="height: 30px;">
+						<h6>&nbsp; Bowler</h6>
+					</div>
+					<div class="col-md-2 col-lg-2" style="height: 30px;">
+						<h6>Balls</h6>
+					</div>
+					<div class="col-md-2 col-lg-2" style="height: 30px;">
+						<h6>Wickets</h6>
+					</div>
+					<div class="col-md-2 col-lg-2" style="height: 30px;">
+						<h6>Maidens</h6>
+					</div>
+					<div class="col-md-1 col-lg-2" style="height: 30px;">
+						<h6>Runs Conceded</h6>
+					</div>
+					<div class="col-md-1 col-lg-1" style="height: 30px;">
+						<h6>Extra</h6>
+					</div>
+				</div>
+				
+				{% for player1 in name2 %}
+				<div class="form-row" id="row1" style="width: 915px;">
+					<div class="col-md-2" style="height: 30px;">
+						<h6>{{player1.player_name}}</h6>
+					</div>
+					<div class="col-md-2 col-lg-2" style="height: 30px;"><input class="form-control" type="number" id="select1" name={{player1.player_id|add:'_balls' }} value={{player1.overs}} readonly></div>
+					<div class="col-md-2 col-lg-2" style="height: 30px;"><input class="form-control" type="number" id="select1" name={{player1.player_id|add:'_wickets'}} value={{player1.wickets}} readonly></div>
+					<div class="col-md-2 col-lg-2" style="height: 30px;"><input class="form-control" type="number" id="select1" name={{player1.player_id|add:'_maidens'}} value={{player1.maidens}} readonly></div>
+					<div class="col-md-1 col-lg-2" style="height: 30px;"><input class="form-control" type="number" id="select1" name={{player1.player_id|add:'_run_conceded' }} value={{player1.run_conceded}} readonly></div>
+					<div class="col-md-1 col-lg-1" style="height: 30px;"><input class="form-control" type="number" id="select1" name={{player1.player_id|add:'_extra'}} value={{player1.extra}} readonly></div>
+				</div>
+				{% endfor %}
+
+				
+			</div>
+			<div id="i21">
+				<h3 style="color: rgb(63,140,255);margin-top:70px"><em>Innings 2:</em></h3>
+				<h4><em>{{bowling_first}} Batting</em></h4>
+				<div class="form-row" id="heading-1">
+					<div class="col-md-2" style="height: 30px;">
+						<h6>&nbsp; Batsman</h6>
+					</div>
+					<div class="col-md-2" style="height: 30px;">
+						<h6>Bowled by</h6>
+					</div>
+					<div class="col-md-2" style="height: 30px;">
+						<h6>Cought by</h6>
+					</div>
+					<div class="col-md-2" style="height: 30px;">
+						<h6>Runout by</h6>
+					</div>
+					<div class="col-md-1" style="height: 30px;">
+						<h6>Run</h6>
+					</div>
+					<div class="col-md-1" style="height: 30px;">
+						<h6>Balls</h6>
+					</div>
+					<div class="col-md-1" style="height: 30px;">
+						<h6>4s</h6>
+					</div>
+					<div class="col-md-1" style="height: 30px;">
+						<h6>6s</h6>
+					</div>
+				</div>
+				{% for player in name2 %}
+				<div class="form-row" id="row1">
+					<div class="col-md-2" style="height: 30px;">
+						<h6>{{player.player_name}}</h6>
+					</div>
+					
+					<div class="col-md-2" style="height: 30px;">
+						{% if player.not_out %}
+							<h6>Not out</h6>
+						{% else %}
+							<h6>{{player.bowled_by}}</h6>
+						{% endif %}
+					</div>
+
+					<div class="col-md-2" style="height: 30px;">
+						{% if player.not_out %}
+							
+						{% else %}
+							<h6>{{player.cought_by}}</h6>
+						{% endif %}
+					</div>
+
+					<div class="col-md-2" style="height: 30px;">
+						{% if player.not_out %}
+							
+						{% else %}
+							<h6>{{player.runout_by}}</h6>
+						{% endif %}
+					</div>
+
+
+					<div class="col-md-1" style="height: 30px;"><input class="form-control" type="number" id="select1" name={{player.player_id|add:'_runs' }} value={{player.run_scored}} readonly></div>
+					<div class="col-md-1" style="height: 30px;"><input class="form-control" type="number" id="select1" name={{player.player_id|add:'_ball_faced'}} value={{player.ball_faced}} readonly></div>
+					<div class="col-md-1" style="height: 30px;"><input class="form-control" type="number" id="select1" name={{player.player_id|add:'_4s'}} value={{player.fours}} readonly></div>
+					<div class="col-md-1" style="height: 30px;"><input class="form-control" type="number" id="select1" name={{player.player_id|add:'_6s'}} value={{player.sixes}} readonly></div>
+				</div>
+				{% endfor %}
+				
+				<div class="form-row" id="row1">
+					<div class="col-md-2" style="height: 30px;">
+						<h6>&nbsp; Total -&nbsp; Extras: {{squad1_score.total_extra}}</h6>
+					</div>
+					<div class="col-md-2" style="height: 30px;">
+						<h6>Balls: {{squad2_score.total_ball}}</h6>
+					</div>
+					<div class="col-md-2" style="height: 30px;">
+						<h6>Wickets: {{squad2_score.total_wicket}}</h6>
+					</div>
+					<div class="col-md-2" style="height: 30px;">
+						
+					</div>
+					<div class="col-md-1" style="height: 30px;">
+						<h6> Runs: {{squad2_score.total_run}}</h6>
+					</div>
+					<div class="col-md-1" style="height: 30px;"></div>
+					<div class="col-md-1" style="height: 30px;">
+						<h6> Fours: {{squad2_score.total_four}}</h6>
+					</div>
+					<div class="col-md-1" style="height: 30px;">
+						<h6> Sixes: {{squad2_score.total_six}}</h6>
+					</div>
+				</div>
+				
+			</div>
+			<div id="i22">
+				<h4><em>{{batting_first}} Bowling</em></h4>
+				<div class="form-row" id="heading-1" style="width: 915px;">
+					<div class="col-md-2" style="height: 30px;">
+						<h6>&nbsp; Bowler</h6>
+					</div>
+					<div class="col-md-2 col-lg-2" style="height: 30px;">
+						<h6>Balls</h6>
+					</div>
+					<div class="col-md-2 col-lg-2" style="height: 30px;">
+						<h6>Wickets</h6>
+					</div>
+					<div class="col-md-2 col-lg-2" style="height: 30px;">
+						<h6>Maidens</h6>
+					</div>
+					<div class="col-md-1 col-lg-2" style="height: 30px;">
+						<h6>Runs Conceded</h6>
+					</div>
+					<div class="col-md-1 col-lg-1" style="height: 30px;">
+						<h6>Extra</h6>
+					</div>
+				</div>
+				{% for player1 in name1 %}
+				<div class="form-row" id="row1" style="width: 915px;">
+					<div class="col-md-2" style="height: 30px;">
+						<h6>{{player1.player_name}}</h6>
+					</div>
+					<div class="col-md-2 col-lg-2" style="height: 30px;"><input class="form-control" type="number" id="select1" name={{player1.player_id|add:'_balls' }} value={{player1.overs}} readonly></div>
+					<div class="col-md-2 col-lg-2" style="height: 30px;"><input class="form-control" type="number" id="select1" name={{player1.player_id|add:'_wickets'}} value={{player1.wickets}} readonly></div>
+					<div class="col-md-2 col-lg-2" style="height: 30px;"><input class="form-control" type="number" id="select1" name={{player1.player_id|add:'_maidens'}} value={{player1.maidens}} readonly></div>
+					<div class="col-md-1 col-lg-2" style="height: 30px;"><input class="form-control" type="number" id="select1" name={{player1.player_id|add:'_run_conceded' }} value={{player1.run_conceded}} readonly></div>
+					<div class="col-md-1 col-lg-1" style="height: 30px;"><input class="form-control" type="number" id="select1" name={{player1.player_id|add:'_extra'}} value={{player1.extra}} readonly></div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		<h4 id="motm" style="margin-left: 40vw;font-size: 14px;">Man of the match: {{motm}}
+		</h4>
+		
+		{% if washed_out %}
+		<h6 style="margin-left: 40vw;font-size: 14px;"> Washed out: &#10004 </h6>
+		{% else %}
+		<h6 style="margin-left: 40vw;font-size: 14px;"> Washed out: &#10060 </h6>
+		{% endif %}
+
+		{% if ended %}
+		<h6 style="margin-left: 40vw;font-size: 14px;"> Ended: &#10004 </h6>
+		{% else %}
+		<h6 style="margin-left: 40vw;font-size: 14px;"> Ended: &#10060 </h6>
+		{% endif %}
+		<h6 style="margin-left: 40vw;font-size: 14px;"> Result: {{result}} </h6>
+
+	</form>
+</div>
+<script src="/static/assets/js/jquery.min.js"></script>
+<script src="/static/assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

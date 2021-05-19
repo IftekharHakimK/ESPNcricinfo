@@ -1,0 +1,30 @@
+#top-head {
+  height: 5vw;
+  text-align: center;
+  background-color: rgb(44,128,255);
+  font-family: cursive;
+  color: white;
+  font-style: italic;
+  font-size: 60px;
+}
+
+#picker {
+  height: 40px;
+  margin-left: 20px;
+  justify-content: center;
+}
+
+#picker .col-1 {
+  margin-left: 10px;
+  margin-top: 10px;
+  text-align: center;
+  background-color: rgb(44,128,255);
+  border-radius: 10px;
+  font-size: 1.25vw;
+  color: white;
+}
+
+#picker a {
+  color: white;
+}
+

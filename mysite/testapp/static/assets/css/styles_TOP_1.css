@@ -1,0 +1,19 @@
+#top {
+  height: 80px;
+  background: rgb(59,59,148);
+  background: linear-gradient(90deg, rgba(59,59,148,1) 5%, rgba(69,69,179,1) 12%, rgba(88,88,215,1) 21%, rgba(108,100,235,1) 50%, rgba(88,163,231,1) 90%, rgba(88,105,194,1) 100%);
+}
+
+#IMG {
+  width: 60px;
+  height: 60px;
+}
+
+#nav {
+  border-radius: 6px;
+  height: 30px;
+  margin-top: 20px;
+  background: rgb(59,59,148);
+  background: linear-gradient(90deg, rgba(59,59,148,1) 5%, rgba(69,69,179,1) 12%, rgba(88,88,215,1) 21%, rgba(108,100,235,1) 50%, rgba(88,163,231,1) 90%, rgba(88,105,194,1) 100%);
+}
+

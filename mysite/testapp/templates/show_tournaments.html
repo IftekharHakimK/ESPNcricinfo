@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Tournaments</title>
+    <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/css/styles_show_tournaments.css">
+</head>
+
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert- {{message.tags}} m-2 id" id="msg" role="alert">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div id="top" >
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="/static/assets/css/Navigation-Clean.css">
+        <link rel="stylesheet" href="/static/assets/css/styles_TOP_1.css">
+        <h1 id="H" style="color: rgb(255,255,255);font-style: italic;font-family: cursive;font-size: 58px;margin-left: 32vw;">Admin:ESPNcricinfo&nbsp;<img class="tada animated" id="IMG" src="/static/assets/css/logo.png"></h1>
+        <nav class="navbar navbar-light navbar-expand-sm" id="nav" style="padding: 13px;">
+            <div class="container-fluid">
+                <a href="{% url 'admin_update_home' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Admin Home</h5>
+                </a>
+                <a href="{% url 'home' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Home</h5>
+                </a>
+                <a href="{% url 'recent_matches' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Matches</h5>
+                </a>
+                <a href="{% url 'show_series' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Series</h5>
+                </a>
+                <a href="/players">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Players</h5>
+                </a>
+                <a href="{% url 'manager' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Managers</h5>
+                </a>
+                <a href="{% url 'user_view_teams' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Teams</h5>
+                </a>
+                <a href="{% url 'news_list' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">News</h5>
+                </a>
+                <a href="{% url 'logout' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Logout</h5>
+                </a>
+            </div>
+        </nav>
+    </div>
+    <div class="container" style="margin-left: 30vw;margin-top: 50px;width: 500px;">
+        <h1 class="text-center" id="tophead" style="color: rgb(63,140,255);"><em>Tournaments</em></h1>
+        <div class="form-row" id="heading-1">
+            <div class="col-md-6" style="height: 30px;">
+                <h6>&nbsp;&nbsp;Tournament Name</h6>
+            </div>
+            <div class="col-md-2" style="height: 30px;">
+                <h6>Ended</h6>
+            </div>
+            <div class="col-md-2" style="height: 30px;">
+                <h6>Details</h6>
+            </div>
+        </div>
+        {% for tournament in tournaments %}
+        <div class="form-row" id="row1">
+            <div class="col-md-6" style="height: 30px;">
+                <h6>&nbsp;&nbsp;{{tournament.tournament_name}}</h6>
+            </div>
+            <div class="col-md-2" style="height: 30px;">
+                {% if tournament.ended %}
+                <h6>&#10004</h6>
+                {% else %}
+                <h6>&#10060</h6>
+                {% endif %}
+            </div>
+            <div class="col-md-2" style="height: 30px;">
+                {% if tournament.ended %}
+                    <h6>
+                        <a href="{% url 'edit_tournament' tournament_id=tournament.tournament_id tournament_name=tournament.tournament_name %}">View</a>
+                    </h6>
+                {% else %}
+                    <h6>
+                        <a href="{% url 'edit_tournament' tournament_id=tournament.tournament_id tournament_name=tournament.tournament_name %}">Edit</a>
+                    </h6>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <script src="/static/assets/js/jquery.min.js"></script>
+    <script src="/static/assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+
+<td></td>

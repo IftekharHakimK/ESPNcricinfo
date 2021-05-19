@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Tournament Details</title>
+    <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/css/styles_show_matches.css">
+</head>
+<style>
+</style>
+
+<body>
+    <div id="top" style="margin-bottom: 100px;">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="/static/assets/css/Navigation-Clean.css">
+        <link rel="stylesheet" href="/static/assets/css/styles_TOP.css">
+        <h1 id="H" style="color: rgb(255,255,255);font-style: italic;font-family: cursive;font-size: 58px;margin-left: 40vw;">ESPNcricinfo&nbsp;<img class="tada animated" id="IMG" src="/static/assets/css/logo.png"></h1>
+        <nav class="navbar navbar-light navbar-expand-sm" id="nav" style="padding: 13px;">
+            <div class="container-fluid">
+                <a href="{% url 'home' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Home</h5>
+                </a>
+                <a href="{% url 'recent_matches' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Matches</h5>
+                </a>
+                <a href="{% url 'show_series' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Series</h5>
+                </a>
+                <a href="/players">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Players</h5>
+                </a>
+                <a href="{% url 'manager' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Managers</h5>
+                </a>
+                <a href="{% url 'user_view_teams' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Teams</h5>
+                </a>
+                <a href="{% url 'news_list' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">News</h5>
+                </a>
+                <a href="{% url 'login' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Admin Site</h5>
+                </a>
+            </div>
+        </nav>
+    </div>
+    <div class="container" style="margin-left: 30vw;margin-top: 50px;width: 600px;margin-bottom: 100px;">
+       <h1 class="text-center" id="tophead" style="color: rgb(63,140,255);"><em>Tournament Details</em></h1>
+        <div class="form-row" id="heading-1">
+            <div class="col-md-12" style="height: 30px;">
+                <center><h5 style="margin-top: 1px;">Information</h5></center>
+            </div>
+        </div>
+        <div class="form-row" id="row1">
+            <div class="col-md-4" style="height: 30px;">
+                <center><h6>Name</h6></center>
+            </div>
+            <div class="col-md-8" style="height: 30px;background-color: #e3e3e3;">
+                <center><h6>{{name}}</h6></center>
+            </div>
+        </div>
+        <div class="form-row" id="row1">
+            <div class="col-md-4" style="height: 30px;">
+                <center><h6>Format</h6></center>
+            </div>
+            <div class="col-md-8" style="height: 30px;background-color: #e3e3e3;">
+                <center><h6>{{format_}}</h6></center>
+            </div>
+        </div>
+        <div class="form-row" id="row1">
+            <div class="col-md-4" style="height: 30px;">
+                <center><h6>Prize Money(Winner)</h6></center>
+            </div>
+            <div class="col-md-8" style="height: 30px;background-color: #e3e3e3;">
+                <center><h6>${{prize_money}}</h6></center>
+            </div>
+        </div>
+        <div class="form-row" id="row1">
+            <div class="col-md-4" style="height: 30px;">
+                <center><h6>Status</h6></center>
+            </div>
+            <div class="col-md-8" style="height: 30px;background-color: #e3e3e3;">
+                {% if ended %}
+                    <center><h6 style="color: red;"><b>Completed</b></h6></center>
+                {% else %}
+                    <center><h6 style="color: green;"><b>Running</b></h6></center>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-row" id="row1">
+            <div class="col-md-4" style="height: 30px;">
+                <center><h6>Man of the tournament</h6></center>
+            </div>
+            <div class="col-md-8" style="height: 30px;background-color: #e3e3e3;">
+                {% if mott %}
+                    <center><h6>{{mott}}</h6></center>
+                {% else %}
+                    <center><h6>Not Decided</h6></center>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-row" id="row1">
+            <div class="col-md-4" style="height: 30px;">
+                <center><h6>Award Money(MOTT)</h6></center>
+            </div>
+            <div class="col-md-8" style="height: 30px;background-color: #e3e3e3;">
+                <center><h6>${{award_money}}</h6></center>
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <div class="form-row" id="heading-1">
+            <div class="col-md-12" style="height: 30px;">
+                <center><h5 style="margin-top: 1px;">Top Run Scorers</h5></center>
+            </div>
+        </div>
+        <div class="form-row"  style="margin-top: 5px; border-radius: 10px;" id="heading-1">
+            <div class="col-md-4" style="height: 30px;background-color: #441896;border-bottom-left-radius: 6px;border-top-left-radius: 6px;">
+                <center><h6>Player</h6></center>
+            </div>
+            <div class="col-md-8" style="height: 30px;background-color: #612fbd;border-bottom-right-radius: 6px;border-top-right-radius: 6px;">
+                <center><h6>Total Runs</h6></center>
+            </div>
+        </div>
+        {% for r in full_r %}
+            <div class="form-row" id="row1">
+                <div class="col-md-4" style="height: 30px;">
+                    <center><h6>{{r.name}}</h6></center>
+                </div>
+                <div class="col-md-8" style="height: 30px;background-color: #e3e3e3;">
+                    <center><h6>{{r.runs}}</h6></center>
+                </div>
+            </div>
+        {% endfor %}
+
+        <br>
+        <br>
+        <div class="form-row" id="heading-1">
+            <div class="col-md-12" style="height: 30px;">
+                <center><h5 style="margin-top: 1px;">Top Wicket Takers</h5></center>
+            </div>
+        </div>
+        <div class="form-row"  style="margin-top: 5px; border-radius: 10px;" id="heading-1">
+            <div class="col-md-4" style="height: 30px;background-color: #441896;border-bottom-left-radius: 6px;border-top-left-radius: 6px;">
+                <center><h6>Player</h6></center>
+            </div>
+            <div class="col-md-8" style="height: 30px;background-color: #612fbd;border-bottom-right-radius: 6px;border-top-right-radius: 6px;">
+                <center><h6>Total Wickets</h6></center>
+            </div>
+        </div>
+        {% for r in full_w %}
+            <div class="form-row" id="row1">
+                <div class="col-md-4" style="height: 30px;">
+                    <center><h6>{{r.name}}</h6></center>
+                </div>
+                <div class="col-md-8" style="height: 30px;background-color: #e3e3e3;">
+                    <center><h6>{{r.wickets}}</h6></center>
+                </div>
+            </div>
+        {% endfor %}
+
+        <br>
+        <br>
+        <div class="form-row" id="heading-1">
+            <div class="col-md-12" style="height: 30px;">
+                <center><h5 style="margin-top: 1px;">Top Boundaries</h5></center>
+            </div>
+        </div>
+        <div class="form-row"  style="margin-top: 5px; border-radius: 10px;" id="heading-1">
+            <div class="col-md-4" style="height: 30px;background-color: #441896;border-bottom-left-radius: 6px;border-top-left-radius: 6px;">
+                <center><h6>Player</h6></center>
+            </div>
+            <div class="col-md-8" style="height: 30px;background-color: #612fbd;border-bottom-right-radius: 6px;border-top-right-radius: 6px;">
+                <center><h6>Total Boundaries</h6></center>
+            </div>
+        </div>
+        {% for r in full_b %}
+            <div class="form-row" id="row1">
+                <div class="col-md-4" style="height: 30px;">
+                    <center><h6>{{r.name}}</h6></center>
+                </div>
+                <div class="col-md-8" style="height: 30px;background-color: #e3e3e3;">
+                    <center><h6>{{r.boundaries}}</h6></center>
+                </div>
+            </div>
+        {% endfor %}
+        
+
+    </div>
+    <script src="/static/assets/js/jquery.min.js"></script>
+    <script src="/static/assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+
+<td></td>

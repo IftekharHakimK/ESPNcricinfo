@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>create_player_contract</title>
+    <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/css/styles_new_player_contract.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+</head>
+
+<body>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert- {{message.tags}} m-2 id" id="msg" role="alert">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div id="top" >
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="/static/assets/css/Navigation-Clean.css">
+        <link rel="stylesheet" href="/static/assets/css/styles_TOP_1.css">
+        <h1 id="H" style="color: rgb(255,255,255);font-style: italic;font-family: cursive;font-size: 58px;margin-left: 32vw;">Admin:ESPNcricinfo&nbsp;<img class="tada animated" id="IMG" src="/static/assets/css/logo.png"></h1>
+        <nav class="navbar navbar-light navbar-expand-sm" id="nav" style="padding: 13px;">
+            <div class="container-fluid">
+                <a href="{% url 'admin_update_home' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Admin Home</h5>
+                </a>
+                <a href="{% url 'home' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Home</h5>
+                </a>
+                <a href="{% url 'recent_matches' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Matches</h5>
+                </a>
+                <a href="{% url 'show_series' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Series</h5>
+                </a>
+                <a href="/players">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Players</h5>
+                </a>
+                <a href="{% url 'manager' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Managers</h5>
+                </a>
+                <a href="{% url 'user_view_teams' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Teams</h5>
+                </a>
+                <a href="{% url 'news_list' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">News</h5>
+                </a>
+                <a href="{% url 'logout' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Logout</h5>
+                </a>
+            </div>
+        </nav>
+    </div>
+    <div class="login-clean">
+        <form method="post" action="{% url 'new_player_contract' %}">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Contract Length (in year) </label>
+                <select class="form-control" name="contract_length">
+                        <option value=1>1</option>
+                        <option value=2>2</option>
+                        <option value=3>3</option>
+                        <option value=4>4</option>
+                        <option value=5>5</option>
+                        <option value=6>6</option>
+                        <option value=7>7</option>
+                        <option value=8>8</option>
+                        <option value=9>9</option>
+                        <option value=10>10</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Salary (in dollar) </label>
+                <input class="form-control" type="number"\ name="salary" required="true">
+            </div>
+
+            <div class="row-fluid">
+                    <label> Select player </label>
+                    <br>
+                    <select  class="selectpicker" data-live-search="true" name="player_id" required="true">
+                        {% for player in players %}
+                            <option data-tokens={{player.player_name}} value={{player.player_id}} >{{player.player_name}}</option>
+                        {% endfor %}
+                    </select>
+            </div>
+
+            <br>
+            <div class="row-fluid">
+                    <label> Select team </label>
+                    <br>
+                    <select class="selectpicker" data-live-search="true" name="team_id" required="true">
+                        {% for team in teams %}
+                                <option data-tokens={{team.team_name}} value={{team.team_id}} >{{team.team_name}}</option>
+                        {% endfor %}
+                    </select>
+            </div>
+            <br>
+            <div class="form-group">
+                <label>Signing Date</label>
+                <input placeholder="Signing date" class="form-control" type="date" name="signing_date" required="true">
+            </div>
+
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Submit</button></div>
+        </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+    <script>
+        setTimeout(function(){
+            if($('#msg').length>0)
+                $('#msg').remove();
+        },2000)
+    </script>
+
+</body>
+
+</html>

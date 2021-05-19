@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>player-detail</title>
+    <link rel="stylesheet" href="/static/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/css/styles_player-detail.css">
+    <link rel="stylesheet" href="/static/assets/css/styles_show_matches.css">
+</head>
+
+<body id="full-body">
+    <div id="top" style="margin-bottom: 70px;">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+        <link rel="stylesheet" href="/static/assets/css/Navigation-Clean.css">
+        <link rel="stylesheet" href="/static/assets/css/styles_TOP.css">
+        <h1 id="H" style="color: rgb(255,255,255);font-style: italic;font-family: cursive;font-size: 58px;margin-left: 40vw;">ESPNcricinfo&nbsp;<img class="tada animated" id="IMG" src="/static/assets/css/logo.png"></h1>
+        <nav class="navbar navbar-light navbar-expand-sm" id="nav" style="padding: 13px;">
+            <div class="container-fluid">
+                <a href="{% url 'home' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Home</h5>
+                </a>
+                <a href="{% url 'recent_matches' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Matches</h5>
+                </a>
+                <a href="{% url 'show_series' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Series</h5>
+                </a>
+                <a href="/players">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Players</h5>
+                </a>
+                <a href="{% url 'manager' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Managers</h5>
+                </a>
+                <a href="{% url 'user_view_teams' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Teams</h5>
+                </a>
+                <a href="{% url 'news_list' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">News</h5>
+                </a>
+                <a href="{% url 'login' %}">
+                    <h5 style="color: rgb(255,255,255);font-style: italic;font-family: cursive;margin-top: 4px;">Admin Site</h5>
+                </a>
+            </div>
+        </nav>
+    </div>
+    <div class="part">
+        <div id="name-div">
+            <h3 id="Name">{{identity.full_name}}</h3>
+        </div>
+        <hr>
+        <div id="main-div" style="margin-bottom: 100px;">
+            <center><img style="max-width: 300px;max-height: 300px;min-width: 200px;min-height: 200px;" src="data:image/jpg;base64,{{ image }}" class="img-thumbnail"></center>
+            <h5 class="identity-det">First Name: {{identity.first_name}}</h5>
+            <h5 class="identity-det">Last Name: {{identity.last_name}}</h5>
+            <h5 class="identity-det">Date of birth: {{identity.dob}}</h5>
+            <h5 class="identity-det">Age: {{identity.year}} years {{identity.day}} days</h5>
+            <h5 class="identity-det">Nationality: {{identity.nationality}}</h5>
+            <h5 class="identity-det">Role: {{identity.role}}</h5>
+            <h5 class="identity-det">Batting Style: {{identity.batting_style}}</h5>
+            <h5 class="identity-det">Bowling Style: {{identity.bowling_style}}</h5>
+            <h5 class="identity-det">
+                Teams: 
+                {% for team in teams %}
+                {{team.team_name}} ( {{team.team_type}} )
+
+                {% endfor %}
+            </h5>
+            <h1 class="text-center" id="tophead" style="color: rgb(63,140,255);"><em>Batting Statistics</em></h1>
+            <center>
+                <div class="form-row" id="heading-1" style="width:500px;">
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>&nbsp;&nbsp;Format</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>&nbsp;&nbsp;Matches</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>Runs</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>Ball Faced</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>Fours</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>Sixes</h6>
+                    </div>
+                </div>
+            </center>
+            <center>
+                <div class="form-row" id="row1" style="width:500px;">
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>&nbsp;&nbsp;ODI</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>&nbsp;&nbsp;{{odi.total_match}}</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>{{odi.run}}</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>{{odi.balls}}</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>{{odi.fours}}</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>{{odi.six}}</h6>
+                    </div>
+                </div>
+            </center>
+
+            <center>
+                <div class="form-row" id="row1" style="width:500px;">
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>&nbsp;&nbsp;T20</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>&nbsp;&nbsp;{{t20.total_match}}</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>{{t20.run}}</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>{{t20.balls}}</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>{{t20.fours}}</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>{{t20.six}}</h6>
+                    </div>
+                </div>
+            </center>
+            
+
+            <h1 class="text-center" id="tophead" style="color: rgb(63,140,255);"><em>Bowling Statistics</em></h1>
+            <center>
+                <div class="form-row" id="heading-1" style="width:500px;">
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>&nbsp;&nbsp;Format</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>&nbsp;&nbsp;Matches</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>Wickets</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>Conceded</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>Balls</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>Total Extra</h6>
+                    </div>
+                </div>
+            </center>
+            <center>
+                <div class="form-row" id="row1" style="width:500px;">
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>&nbsp;&nbsp;ODI</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>&nbsp;&nbsp;{{odi.total_match}}</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>{{odi.wicket}}</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>{{odi.run_given}}</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>{{odi.overs}}</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>{{odi.extras}}</h6>
+                    </div>
+                </div>
+            </center>
+
+            <center>
+                <div class="form-row" id="row1" style="width:500px;">
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>&nbsp;&nbsp;T20</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>&nbsp;&nbsp;{{t20.total_match}}</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>{{t20.wicket}}</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>{{t20.run_given}}</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>{{t20.overs}}</h6>
+                    </div>
+                    <div class="col-md-2" style="height: 30px;">
+                        <h6>{{t20.extras}}</h6>
+                    </div>
+                </div>
+            </center>
+
+
+            <h1 class="text-center" id="tophead" style="color: rgb(63,140,255);"><em>Fielding Statistics</em></h1>
+            <center>
+                <div class="form-row" id="heading-1" style="width:500px;">
+                    <div class="col-md-3" style="height: 30px;">
+                        <h6>&nbsp;&nbsp;Format</h6>
+                    </div>
+                    <div class="col-md-3" style="height: 30px;">
+                        <h6>&nbsp;&nbsp;Matches</h6>
+                    </div>
+                    <div class="col-md-3" style="height: 30px;">
+                        <h6>Catches</h6>
+                    </div>
+                    <div class="col-md-3" style="height: 30px;">
+                        <h6>Run Outs</h6>
+                    </div>
+                </div>
+            </center>
+            <center>
+                <div class="form-row" id="row1" style="width:500px;">
+                    <div class="col-md-3" style="height: 30px;">
+                        <h6>&nbsp;&nbsp;ODI</h6>
+                    </div>
+                    <div class="col-md-3" style="height: 30px;">
+                        <h6>&nbsp;&nbsp;{{odi.total_match}}</h6>
+                    </div>
+                    <div class="col-md-3" style="height: 30px;">
+                        <h6>{{odi.caught}}</h6>
+                    </div>
+                    <div class="col-md-3" style="height: 30px;">
+                        <h6>{{odi.runout}}</h6>
+                    </div>
+                </div>
+            </center>
+            <center>
+                <div class="form-row" id="row1" style="width:500px;">
+                    <div class="col-md-3" style="height: 30px;">
+                        <h6>&nbsp;&nbsp;T20</h6>
+                    </div>
+                    <div class="col-md-3" style="height: 30px;">
+                        <h6>&nbsp;&nbsp;{{t20.total_match}}</h6>
+                    </div>
+                    <div class="col-md-3" style="height: 30px;">
+                        <h6>{{t20.caught}}</h6>
+                    </div>
+                    <div class="col-md-3" style="height: 30px;">
+                        <h6>{{t20.runout}}</h6>
+                    </div>
+                </div>
+            </center>
+        </div>
+    </div>
+    
+    <script src="/static/assets/js/jquery.min.js"></script>
+    <script src="/static/assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
